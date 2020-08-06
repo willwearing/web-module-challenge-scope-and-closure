@@ -30,7 +30,7 @@ function processFirstItem(stringList, callback) {
  * 2. Which of the two uses a closure? How can you tell?
  * Counter 1. Closure is when you have an inner function getting access to the outer functions scope. So in this case, count is reaching out from the inner function to the outer functions count being equal to 0 and then adding 1.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
- * Counter 1 would be preferrable if you needed to store the 'current' number in count. Counter 2 would be better if you just
+ * I believe the scenario where it will be better is if we want to use a variable or function(callback) that is on the global scope. Of course, the counter1 is better, but for a scenario where we want to access or use global scope variables, that's when the counter2 becomes a better solution.
  */
 
 // counter1 code
@@ -77,10 +77,10 @@ finalScore(inning, 9) might return:
 function finalScore(inning, n) {
   let homeScore = 0;
   let awayScore = 0;
-  
+
   for (let i = 0; i < n; i++) {
     homeScore += inning();
-    awayScore += inning(); 
+    awayScore += inning();
   }
   let score = {
     Home: homeScore,
@@ -89,7 +89,7 @@ function finalScore(inning, n) {
   return score;
 }
 
-console.log(finalScore(inning, 9))
+console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
@@ -111,6 +111,23 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(inning, n) {
+  let allScores = [];
+  let homeScores = 0;
+  let awayScores = 0;
+  let currentInning = 0;
+
+  for (let i = 0; i < n; i++) {
+    homeScores += inning();
+    awayScores += inning();
+
+    currentInning = i + 1;
+    allScores += `Inning ${
+      i + 1
+    }: awayTeam (${awayScores}) - homeTeam (${homeScores})\n`;
+  }
+  allScores += `Final Score: awayTeam (${awayScores}) - homeTeam (${homeScores})`;
+  return allScores;
 }
+
+console.log(scoreboard(inning, 9));
