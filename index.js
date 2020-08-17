@@ -93,6 +93,7 @@ console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
+
 Create a function called `scoreboard` that accepts the following parameters: 
 
 (1) Callback function `getInningScore`
